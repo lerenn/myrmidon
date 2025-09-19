@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏔️ MYRMIDON - THE LEGENDARY MOUNTAIN EMPIRE 🏔️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(45deg, #000428, #004e92, #000428, #004e92);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            font-family: 'Cinzel', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Epic snowfall effect */
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Dramatic lightning effect */
+        .lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        @keyframes lightning {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 10% { opacity: 0.8; }
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 5;
+            padding: 20px;
+        }
+        
+        .epic-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 8vw, 6rem);
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 30px #00ffff,
+                0 0 40px #00ffff,
+                0 0 50px #00ffff,
+                0 0 60px #00ffff,
+                0 0 70px #00ffff;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            transform: perspective(500px) rotateX(15deg);
+            letter-spacing: 0.2em;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 30px #00ffff,
+                    0 0 40px #00ffff,
+                    0 0 50px #00ffff,
+                    0 0 60px #00ffff,
+                    0 0 70px #00ffff;
+                transform: perspective(500px) rotateX(15deg) scale(1);
+            }
+            100% {
+                text-shadow: 
+                    0 0 20px #ff00ff,
+                    0 0 30px #ff00ff,
+                    0 0 40px #ff00ff,
+                    0 0 50px #ff00ff,
+                    0 0 60px #ff00ff,
+                    0 0 70px #ff00ff,
+                    0 0 80px #ff00ff;
+                transform: perspective(500px) rotateX(15deg) scale(1.05);
+            }
+        }
+        
+        .logo-container {
+            position: relative;
+            margin: 2rem 0;
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-20px) rotate(2deg) scale(1.02);
+            }
+            50% {
+                transform: translateY(-10px) rotate(0deg) scale(1.05);
+            }
+            75% {
+                transform: translateY(-15px) rotate(-2deg) scale(1.02);
+            }
+        }
+        
+        .logo {
+            width: clamp(200px, 40vw, 500px);
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.8),
+                0 0 60px rgba(0, 255, 255, 0.6),
+                0 0 90px rgba(255, 0, 255, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: logoPulse 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .logo:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 
+                0 0 50px rgba(255, 255, 255, 1),
+                0 0 100px rgba(0, 255, 255, 0.8),
+                0 0 150px rgba(255, 0, 255, 0.6),
+                inset 0 0 50px rgba(255, 255, 255, 0.5);
+        }
+        
+        @keyframes logoPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 30px rgba(255, 255, 255, 0.8),
+                    0 0 60px rgba(0, 255, 255, 0.6),
+                    0 0 90px rgba(255, 0, 255, 0.4),
+                    inset 0 0 30px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 
+                    0 0 50px rgba(255, 255, 255, 1),
+                    0 0 100px rgba(0, 255, 255, 0.8),
+                    0 0 150px rgba(255, 0, 255, 0.6),
+                    inset 0 0 50px rgba(255, 255, 255, 0.5);
+            }
+        }
+        
+        .epic-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 3vw, 2rem);
+            color: #fff;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: subtitleFade 4s ease-in-out infinite;
+            font-style: italic;
+        }
+        
+        @keyframes subtitleFade {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .dramatic-text {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            color: #fff;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.8;
+            margin: 2rem 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+            100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+        }
+        
+        .epic-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: buttonGradient 3s ease infinite;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 
+                0 0 30px rgba(255, 107, 107, 0.6),
+                0 0 60px rgba(78, 205, 196, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes buttonGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .epic-button:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 
+                0 0 50px rgba(255, 107, 107, 0.8),
+                0 0 100px rgba(78, 205, 196, 0.6),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .epic-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .epic-button:hover:before {
+            left: 100%;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        .mountain-silhouette {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .mountain-silhouette:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath d='M0,200 L100,150 L200,180 L300,120 L400,160 L500,100 L600,140 L700,80 L800,120 L900,60 L1000,100 L1100,40 L1200,80 L1200,200 Z' fill='%23000000'/%3E%3C/svg%3E") no-repeat center bottom;
+            background-size: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .epic-title {
+                font-size: 3rem;
+            }
+            
+            .logo {
+                width: 250px;
+            }
+            
+            .epic-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Lightning Effect -->
+    <div class="lightning" id="lightning"></div>
+    
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
+    
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Mountain Silhouette -->
+    <div class="mountain-silhouette"></div>
+    
+    <div class="container">
+        <h1 class="epic-title">🏔️ MYRMIDON 🏔️</h1>
+        
+        <div class="logo-container">
+            <img src="myrmidon.jpg" alt="MYRMIDON - The Legendary Mountain Empire" class="logo" id="logo">
+        </div>
+        
+        <p class="epic-subtitle">"Where Legends Are Forged in Ice and Stone"</p>
+        
+        <div class="dramatic-text">
+            <p>🌟 <strong>BEHOLD!</strong> The most EPIC, LEGENDARY, and ABSOLUTELY MAGNIFICENT logo in the entire digital realm! 🌟</p>
+            <br>
+            <p>This is not just a logo... This is a <em>MASTERPIECE</em> of mountain-climbing excellence! A trident of power crossed with ice axes of destiny, surrounded by stars of glory! ✨</p>
+            <br>
+            <p>Witness the circular perfection! Marvel at the monochrome majesty! Tremble before the crossed tools of adventure! 🏔️⚡</p>
+        </div>
+        
+        <button class="epic-button" onclick="triggerEpicEvent()">
+            🚀 ENTER THE LEGEND 🚀
+        </button>
+        
+        <div class="dramatic-text">
+            <p><em>"In the realm of MYRMIDON, every pixel tells a story, every animation sings a song, and every hover effect creates a symphony of digital wonder!"</em> 🎭</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const snowflakes = document.getElementById('snowflakes');
+            const snowflakeSymbols = ['❄️', '❅', '❆', '⛄', '🏔️'];
+            
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                snowflake.style.animationDelay = Math.random() * 2 + 's';
+                snowflakes.appendChild(snowflake);
+            }
+        }
+        
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particles.appendChild(particle);
+            }
+        }
+        
+        // Lightning effect
+        function triggerLightning() {
+            const lightning = document.getElementById('lightning');
+            lightning.style.animation = 'lightning 0.3s';
+            setTimeout(() => {
+                lightning.style.animation = '';
+            }, 300);
+        }
+        
+        // Epic button event
+        function triggerEpicEvent() {
+            // Lightning
+            triggerLightning();
+            
+            // Logo spin
+            const logo = document.getElementById('logo');
+            logo.style.animation = 'none';
+            setTimeout(() => {
+                logo.style.animation = 'logoFloat 4s ease-in-out infinite, logoPulse 2s ease-in-out infinite';
+            }, 10);
+            
+            // Create explosion of particles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'fixed';
+                    particle.style.left = '50%';
+                    particle.style.top = '50%';
+                    particle.style.width = '10px';
+                    particle.style.height = '10px';
+                    particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    particle.style.borderRadius = '50%';
+                    particle.style.pointerEvents = 'none';
+                    particle.style.zIndex = '1000';
+                    particle.style.transform = 'translate(-50%, -50%)';
+                    document.body.appendChild(particle);
+                    
+                    const angle = (Math.PI * 2 * i) / 20;
+                    const velocity = 200;
+                    const vx = Math.cos(angle) * velocity;
+                    const vy = Math.sin(angle) * velocity;
+                    
+                    let x = 0, y = 0;
+                    const animate = () => {
+                        x += vx * 0.016;
+                        y += vy * 0.016;
+                        particle.style.transform = `translate(${x - 50}px, ${y - 50}px)`;
+                        particle.style.opacity = 1 - (Math.abs(x) + Math.abs(y)) / 400;
+                        
+                        if (Math.abs(x) < 400 && Math.abs(y) < 400) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            particle.remove();
+                        }
+                    };
+                    animate();
+                }, i * 50);
+            }
+            
+            // Play epic sound (if supported)
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(880, audioContext.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                console.log('Audio not supported, but the visual effects are still EPIC!');
+            }
+        }
+        
+        // Random lightning strikes
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                triggerLightning();
+            }
+        }, 2000);
+        
+        // Initialize effects
+        createSnowflakes();
+        createParticles();
+        
+        // Logo click event
+        document.getElementById('logo').addEventListener('click', () => {
+            triggerEpicEvent();
+        });
+        
+        // Add some dramatic console messages
+        console.log('%c🏔️ MYRMIDON - THE LEGENDARY MOUNTAIN EMPIRE 🏔️', 'color: #00ffff; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #00ffff;');
+        console.log('%cWelcome to the most EPIC website in the digital realm!', 'color: #ff00ff; font-size: 14px;');
+        console.log('%cPrepare for maximum drama and theatrics!', 'color: #ffff00; font-size: 12px;');
+    </script>
+</body>
+</html>
